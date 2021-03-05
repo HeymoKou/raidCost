@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <%- include ('common/head.ejs') %>
+  <title>Raid cost for <%= raidLogId %></title>
+</head>
+<body>
+  <%- include ('common/header.ejs') %>
+  <div class="container" style="width:80vw; height:60vh; margin: 5vh 10vw; display: table;">
+    <div style="border: 1px dashed red; width: 100%; height: 100px;">
+      Your raid spent total of <span>12,345</span> Gold in <span>Naxxramas</span>
+      <img src="https://render-classic-kr.worldofwarcraft.com/icons/56/inv_sword_39.jpg">
+    </div>
+    <div style="border: 1px dashed red; width: 100%; height: 400px; overflow-y: auto;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Total Count</th>
+            <th>Item Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < data.length; i++) {%>
+          <tr>
+            <td>
+              <img src="https://wow.zamimg.com/images/wow/icons/large/<%= data[i].icon %>"><%= data[i].guid %>
+            </td>
+            <td>
+              <%= data[i].totalUses %>
+            </td>
+            <td>
+              10 Gold
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  <!-- <%- JSON.stringify(data) %> -->
+  <%- include ('common/footer.ejs') %>
+  <!-- <script data-ad-client="ca-pub-1685089739066471" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+</body>
+</html>
