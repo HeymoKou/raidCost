@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-redisConfig.js
-wclConfig.js
+config/
 data/
+scripts/

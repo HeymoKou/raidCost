@@ -2,16 +2,25 @@
 <html lang="ko">
 <head>
   <%- include ('common/head.ejs') %>
-  <title>Raid Expense</title>
+  <title>Raidcost</title>
 </head>
 <body style="min-height: 400px;">
   <%- include ('common/header.ejs') %>
   <div class="container" style="width:80vw; height:70vh; margin: 5vh 10vw; display: table;">
     <div style="display: table-cell; vertical-align: middle; text-align: center;">
+      <h1>Raidcost</h1>
+      <h2>Find how much you have spent on World of Warcraft Classic raid</h2>
+      <h4>Option1 - Change URL of your <a href="https://www.warcraftlogs.com/">Warcraft Log</a> report url domtain to <a href="/">raidcost.com</a>.</h4>
+      <h5>ex: https://ko.classic.warcraftlogs.com/reports/{reportCode} -> https://raidcost.com/reports/{reportCode}</h5>
+      <div class="mb-3">
+        <img src="/img/beforeUrlChange.png">
+        <img src="/img/afterUrlChange.png">
+      </div>
+      <h4>Option2 - type in your raid report code and press Analyze button</h4>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="https://*.classic.warcraftlogs.com/reports/HPWcjVM92rGRkF3K or HPWcjVM92rGRkF3K" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Button</button>
+          <button class="btn btn-outline-secondary" type="button">Analyze</button>
         </div>
       </div>
     </div>

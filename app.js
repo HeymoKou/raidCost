@@ -1,8 +1,12 @@
 const express = require('express')
+const helmet = require('helmet')
 const app = express()
 const http = require('http').Server(app)
 
+app.use(helmet({ contentSecurityPolicy: false }))
+
 app.set('view engine', 'ejs')
+app.use('/img', express.static('img'));
 app.use('/', require('./routes/app'))
 
 app.use(function(req,res){
@@ -10,7 +14,6 @@ app.use(function(req,res){
 });
 
 const port = 3000
-// const port = 80
 http.listen(port, () => {
   console.log('listening at port ', port)
 })

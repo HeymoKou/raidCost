@@ -3,44 +3,49 @@
 <head>
   <%- include ('common/head.ejs') %>
   <title>Raid cost for <%= raidLogId %></title>
+  <style>
+    div.item-row {
+      width: 350px; max-height: 40px; display: flow-root; align-content: space-between; border: 1px solid gray; border-radius: 4px; padding: 4px;
+    }
+    img.item-icon {
+      width:30px; height:30px; float:left;
+    }
+    div.item-name {
+      float:left; max-width: 200px; width: 220px; height: 100%; font-size: 0.8rem; line-height: 1.7rem; margin-left: 8px; font-weight: bold;
+    }
+    div.item-count {
+      float: left; width: 30px; text-align: end;
+    }
+    span.gold {
+      float:right; padding-right: 15px; background-image: url(https://wow.zamimg.com/images/icons/money-gold.gif); background-repeat: no-repeat; background-position: center right;
+    }
+  </style>
 </head>
 <body>
   <%- include ('common/header.ejs') %>
-  <div class="container" style="width:80vw; height:60vh; margin: 5vh 10vw; display: table;">
+  <div class="container" style="width:80vw!important; max-width:none!important; height:60vh; margin: 5vh 10vw;">
     <div style="border: 1px dashed red; width: 100%; height: 100px;">
-      Your raid spent total of <span>12,345</span> Gold in <span>Naxxramas</span>
+      Your raid spent total of <span style="margin-right: 10px; padding-right: 15px; background-image: url(https://wow.zamimg.com/images/icons/money-gold.gif); background-repeat: no-repeat; background-position: center right;">
+        <%= Math.floor(total / 10000).toLocaleString() %>
+        </span> in <span><%= meta.zone %>(<%= meta.server %>-<%= meta.faction%>)</span>
       <img src="https://render-classic-kr.worldofwarcraft.com/icons/56/inv_sword_39.jpg">
     </div>
-    <div style="border: 1px dashed red; width: 100%; height: 400px; overflow-y: auto;">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Total Count</th>
-            <th>Item Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(var i=0; i < data.length; i++) {%>
-          <tr>
-            <td>
-              <img src="https://wow.zamimg.com/images/wow/icons/large/<%= data[i].icon %>"><%= data[i].guid %>
-            </td>
-            <td>
-              <%= data[i].totalUses %>
-            </td>
-            <td>
-              10 Gold
-            </td>
-          </tr>
-          <% } %>
-        </tbody>
-      </table>
+    <div style="border: 1px dashed red; width: 100%; height: 400px; overflow-y: auto; display: flex; flex-flow: row wrap">
+      <% for(var i=0; i < data.length; i++) {%>
+      <div class="item-row">
+        <a href="https://<%= locale %>classic.wowhead.com/spell=<%= data[i].guid %>" target="_blank" rel="noopener noreferrer">
+          <img class="item-icon" src="https://wow.zamimg.com/images/wow/icons/medium/<%= data[i].icon %>" loading="lazy">
+        </a>
+        <div class="item-name"><%= data[i].name %></div>        
+        <div class="item-count"><%= data[i].totalUses %></div>
+        <span class="gold price">
+          <%= data[i].buyout == 'N/A' ? 'N/A' : Math.round(data[i].buyout / 10000).toLocaleString() %>
+        </span>
+      </div>
+      <% } %>
     </div>
   </div>
   
-  
-  <!-- <%- JSON.stringify(data) %> -->
   <%- include ('common/footer.ejs') %>
 </body>
 </html>
